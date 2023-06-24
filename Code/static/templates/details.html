@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Case Study Hatespeech</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    <div class ="design"> 
+      <img class="bot" src="{{ url_for('static', filename='images/bottts-4.png') }}">
+      <hgroup class="speech-bubble">
+        <h1 class="title">Welcome</h1>
+        <h2 class="subtitle">Nice to see you!</h2>
+    </div>
+    <form action="/details" method="post">
+    <div class="login">
+      <h3 class="title"> Share a bit about your background</h3>
+      <div class="text-input">
+        <h3 class = "Agetitle" > Age</h3>
+          <select id="age" name="age" required>
+            <option value="" disabled selected>Select your age</option>
+            <option value="18-24">18-24</option>
+            <option value="25-34">25-34</option>
+            <option value="35-44">35-44</option>
+            <option value="45-54">45-54</option>
+            <option value="55+">55+</option>
+          </select>
+        </div>
+      <div>
+        <h3 class = "gender">Gender:</h3>
+        <input type="radio" id="male" name="gender" value="male" required>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female" required>
+        <label for="female">Female</label>
+        <input type="radio" id="div" name="gender" value="div" required>
+        <label for="div">Diverse</label>
+      </div>
+        <div class="text-input">
+        <h3 class="role">Role:</h3>
+        <select id="role" name="role" required>
+          <option value="" disabled selected>Select your role</option>
+          <option value="student">Student</option>
+          <option value="Self-employed">Self-employed</option>
+          <option value="Employed">Employed</option>
+          <option value="Pension">Pension</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <label>
+        <input type="checkbox" name="terms" required>
+        I accept the <a href="{{ url_for('terms') }}"> terms and conditions </a>.
+      </label>
+          <button type="submit" name = "submit" class = "login-btn">Register</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

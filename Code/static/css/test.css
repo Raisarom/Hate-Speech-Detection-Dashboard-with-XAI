@@ -1,0 +1,342 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+*,
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: linear-gradient(to bottom right,#2C5364, #9ab28d, #b5cda8);  */
+  background: #1f4037;
+  background: -webkit-linear-gradient(to left, #8daa91, #1f4037);
+  background: linear-gradient(to left, #8daa91, #1f4037);
+  /* background-color: #8da580; */
+}
+
+.container {
+  display: grid;
+  width: 50vw;
+  height: 60vh;
+  grid-template-rows: 1.5fr 1fr 1.7fr 1.8fr;
+  grid-auto-columns: 1fr;
+  gap: 5px 0px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  grid-template-areas:
+    "Introduction"
+    "text"
+    "Annotations"
+    "Evaluation";
+}
+
+#Annotations {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.5fr 0.5fr 1fr;
+  gap: 1px 0px;
+  text-align: center;
+  position: relative;
+  grid-template-areas:
+    "annotations annotations annotations"
+    "annotations annotations annotations"
+    "selection selection selection";
+  grid-area: test;
+  z-index: 2;
+}
+
+.annotations {
+  background: #dad7cd;
+  padding-top: var(--main-padding);
+  position: relative;
+  grid-area: annotations;
+}
+
+.selection {
+  background: #a7c957;
+  padding-top: var(--main-padding);
+  position: relative;
+  grid-area: selection;
+}
+
+:root {
+  --main-radius: 5px;
+  --main-padding: 5px;
+}
+
+#Introduction {
+  background: #fffcf2;
+  grid-area: Introduction;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  position: relative;
+}
+
+#Introduction p {
+  font-size: 1rem;
+  font-weight: 100;
+  text-align: center;
+  padding: 10px;
+}
+
+#Introduction h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+#text {
+  background: #dad7cd;
+  grid-area: text;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  position: relative;
+}
+
+#Annotations {
+  background: #dad7cd;
+  grid-area: Annotations;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  position: relative;
+}
+
+#Evaluation {
+  display: none;
+  background: #dad7cd;
+  grid-area: Evaluation;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  position: relative;
+}
+
+#evaluation.visible {
+  display: flex;
+}
+
+/* evaluation area */
+
+.checkbox {
+  display: flex;
+  margin-top: 20px;
+  padding: 5px;
+}
+
+.inputText {
+  border: 3px solid #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+.intensity_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding: 5px;
+}
+
+.intensity_drop {
+  background: #c8bff6;
+  height: 50px;
+  display: flex;
+  width: 250px;
+  align-items: center;
+  padding: 0 15px;
+  margin: 15px 0;
+  border-radius: 5px;
+}
+
+.intensity_drop select {
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  margin-left: 10px;
+}
+
+/* Radio Container */
+
+.radio-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.radio-container input[type="radio"] {
+  margin-right: 5px;
+}
+
+.dropdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Kreis */
+
+.annotations {
+  text-align: center;
+  margin-top: 25px;
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.circle1,
+.circle2 {
+  height: 100px;
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+  margin-right: 20px;
+  margin-bottom: 30px;
+  position: relative;
+  border: 2px solid #f1ab00;
+}
+
+.annotations .circle1,
+.annotations .circle2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.circle1 {
+  background: #adb5bd;
+}
+
+.circle2 {
+  background: #adb5bd;
+}
+
+/* Hilfe */
+
+.question1 {
+  height: 20px;
+  width: 20px;
+  right: calc(
+    2% + 10px
+  ); /* set the right position relative to the right border of the main area */
+  position: absolute;
+  top: 20px; /* set the top position */
+  padding: 5px;
+}
+
+.question1:hover + .info-text1 {
+  display: block;
+}
+
+.info-text1 {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 100px;
+  top: 50px;
+  z-index: 11;
+  width: 200px;
+  background-color: #fff;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  padding: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+/* Checkbox Design */
+
+input[type="checkbox"] {
+  margin: 10px;
+  transform: scale(1.5);
+}
+
+/* Style the labels */
+label {
+  display: inline-block;
+  margin: 10px;
+  font-size: 18px;
+}
+
+/* Button */
+
+.continue-btn {
+  display: block;
+  width: 100px;
+  margin: 20px auto;
+  border-radius: 20px;
+  color: white;
+  background: linear-gradient(to right, #cdc4fb, #b1a8de);
+  border: none;
+  padding: 14px 20px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  -webkit-transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  margin-bottom: 50px;
+}
+
+.continue-btn:hover,
+login-btn:focus,
+login-btn:active {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+/* Responsive Design for I phone */
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .container {
+    display: grid;
+    width: 30vw;
+    height: 20vh;
+    grid-template-rows: 1.5fr 1fr 1.7fr 1.8fr;
+    grid-auto-columns: 1fr;
+    gap: 5px 0px;
+    margin: 20px auto;
+    position: relative;
+    grid-template-areas:
+      "Introduction"
+      "text"
+      "Annotations"
+      "Evaluation";
+  }
+
+  #Introduction p {
+    font-size: 10px;
+    font-weight: 200;
+    padding: 10px;
+  }
+
+  #Introduction h1 {
+    font-size: 12px;
+  }
+}
+
+/* Responsive Design for I pad */
+
+@media only screen and (max-width: 900px),
+  (height: 1024px) and (width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) and (orientation: landscape),
+  (width: 1024px) and (height: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) and (orientation: portrait) {
+  .container {
+    display: grid;
+    width: 60vw;
+    height: 70vh;
+    grid-template-rows: 1.5fr 1fr 1.7fr 1.8fr;
+    grid-auto-columns: 1fr;
+    gap: 5px 0px;
+    margin: 20px auto;
+    position: relative;
+    grid-template-areas:
+      "Introduction"
+      "text"
+      "Annotations"
+      "Evaluation";
+  }
+}

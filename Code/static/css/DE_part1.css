@@ -1,0 +1,856 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+/* Main Dashboard components Grid Layout*/
+
+.container {
+  display: grid;
+  height: 125vh;
+  background: #d9d9d9;
+  grid-template-columns: 0.3fr 2fr 0.7fr;
+  grid-template-rows: 1fr 1.2fr 1fr 0.3fr;
+  gap: 10px 10px;
+  position: relative;
+  grid-template-areas:
+    "sidebar main BaroMeter"
+    "sidebar BarChart TakingActions "
+    "sidebar Intensities TakingActions "
+    "nav nav nav";
+}
+
+/* Main Area */
+
+p {
+  font-size: 16px;
+  color: black;
+  position: relative;
+  align-self: center;
+  margin-top: 50px;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+main {
+  background: #ffffff;
+  grid-area: main;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  position: relative;
+}
+
+/* TakingActionsbereich */
+
+#TakingActions {
+  background: #81b29a;
+  grid-area: TakingActions;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  position: relative;
+}
+
+input[type="radio"] {
+  appearance: none;
+  background-color: white;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  width: 1.2em;
+  height: 1.2em;
+  margin-right: 10px;
+  display: inline-block;
+  position: relative;
+}
+
+input[type="radio"]:checked::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background-color: #ccc;
+}
+
+input[type="submit"] {
+  margin-top: 10px;
+  align-self: center;
+  font-size: 16px;
+  padding: 10px 25px;
+  border-radius: 20px;
+  background-color: #f1ab00;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+input[type="submit"]:hover {
+  background-color: #ff7e00;
+}
+
+input[type="submit"]:active {
+  transform: translateY(1px);
+}
+
+.actions {
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+label {
+  margin: 10px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+/* Evaluationsbereich */
+
+.evaluateAction {
+  text-align: left;
+  margin-left: 10px;
+  margin-top: 80px;
+}
+
+.EvalSolutions {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  top: 40px;
+}
+
+.Eval {
+  font-size: 20px;
+  margin-bottom: 10px;
+  padding: 20px;
+}
+
+.EvalSolutions label,
+select {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.EvalSolutions select {
+  width: 60%;
+  padding: 5px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+#class,
+#intensity {
+  align-items: center;
+  margin-top: 5px;
+  left: 60px;
+  position: relative;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 5px;
+}
+
+select#intensity.evalcenter {
+  text-align: center;
+}
+
+.EvalSolutions button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  background-color: #7db8a1;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  align-self: center;
+  margin-bottom: 20px;
+}
+
+.EvalSolutions button:hover {
+  background-color: #568172;
+}
+
+/* BarChartbereich */
+
+#BarChart {
+  background: #f1f1f1;
+  grid-area: BarChart;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  position: relative;
+}
+
+/* Navbereich */
+
+nav {
+  background: #516e7f;
+  grid-area: nav;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+}
+
+.button-container_nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 750px;
+  margin-top: 40px;
+}
+
+/* Intensitybereich */
+
+#Intensities {
+  background: #f1f1f1;
+  grid-area: Intensities;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  position: relative;
+}
+
+.TextOutput {
+  background: #ffffff;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  position: relative;
+  max-width: calc(100% - 400px);
+  width: 480px;
+  height: 250px;
+  left: 380px;
+  bottom: 50px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 100px;
+  margin-left: 30px;
+  justify-content: space-between;
+}
+
+.button-group button {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
+  padding: 5px 10px;
+  border: 2px solid #bebebe;
+  border-radius: 5px;
+  background-color: #ffffff;
+  cursor: not-allowed;
+  width: 200px;
+}
+
+.button-group .nohate-button {
+  border-color: #f1ab00;
+}
+
+.button-group .intimidation-button {
+  border-color: #bebebe;
+}
+
+.button-group .offense-button {
+  border-color: #bebebe;
+}
+
+.button-group .violence-button {
+  border-color: #bebebe;
+}
+
+.TextOutput p {
+  font-size: 16px;
+  color: black;
+  position: relative;
+  align-self: center;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.reset-button2 {
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 18px;
+  background-color: #7db8a1;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+}
+
+.reset-button2 {
+  border-radius: 15px;
+  font-size: 16px;
+  padding: 8px 20px;
+  background-color: #7db8a1;
+  margin-left: 10px;
+}
+
+.reset-button2 img {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+.reset-button2:hover {
+  background-color: #568172;
+}
+
+.reset-button2:active {
+  transform: translateY(1px);
+}
+
+/* sidebarbereich */
+
+#sidebar {
+  background: #3b6461;
+  grid-area: sidebar;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  text-align: center;
+  position: relative;
+}
+
+.progress-container {
+  width: 80%;
+  margin: 20px auto;
+  height: 20px;
+  background-color: #f1ab00;
+  border-radius: 10px;
+  position: relative;
+  top: 100px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #ff7e00;
+  border-radius: 10px;
+  width: 0;
+  transition: width 0.5s ease-in-out;
+  position: relative;
+}
+
+.speech-bubble {
+  height: 35px;
+  width: 40px;
+  margin: auto;
+  top: 100px;
+  position: relative;
+}
+
+.UserID {
+  position: absolute;
+  top: 200px;
+  padding: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+:root {
+  --main-radius: 5px;
+  --main-padding: 5px;
+}
+
+/* Design of the questionmarks */
+
+.question1,
+.question2,
+.question3,
+.question4,
+.question5,
+.question6 {
+  height: 20px;
+  width: 20px;
+  right: calc(
+    2% + 10px
+  ); /* set the right position relative to the right border of the main area */
+  position: absolute;
+  top: 20px; /* set the top position */
+  padding: 5px;
+}
+
+.info-text1,
+.info-text2,
+.info-text3,
+.info-text5,
+.info-text6 {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 100px;
+  top: 50px;
+  z-index: 11;
+  width: 200px;
+  background-color: #fff;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  padding: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+.question1:hover + .info-text1 {
+  display: block;
+}
+
+.question2:hover + .info-text2 {
+  display: block;
+}
+
+.question3:hover + .info-text3 {
+  display: block;
+}
+
+.question5:hover + .info-text5 {
+  display: block;
+}
+
+.question6:hover + .info-text6 {
+  display: block;
+}
+
+/* Thumbs up thumbs down icons */
+
+.rating,
+.rating3 {
+  right: calc(
+    2% + 10px
+  ); /* set the right position relative to the right border of the main area */
+  position: absolute;
+  bottom: 20px; /* set the top position */
+}
+
+.rating2 {
+  right: calc(
+    2% + 10px
+  ); /* set the right position relative to the right border of the main area */
+  position: absolute;
+  top: 200px; /* set the top position */
+}
+
+.like,
+.dislike {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dislike:hover,
+.like:hover {
+  color: #568172;
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.active {
+  color: #568172;
+}
+
+.rating2 .like,
+.rating2 .dislike {
+  z-index: 2;
+}
+
+/* Barometer style */
+
+#BaroMeter {
+  background: #f1f1f1;
+  grid-area: BaroMeter;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  justify-content: center;
+  align-items: center;
+}
+
+.BaroMeter-text {
+  font-size: 20px;
+  text-align: center;
+  padding: 10px;
+}
+
+.progressChart {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  left: 80px;
+}
+
+.outer {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  padding: 20px;
+  box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+    -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+}
+
+.inner {
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  padding: 15px;
+  box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+    inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+    -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+    0.5px 0.5px 0px rgba(0, 0, 0, 0.15), 0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#number {
+  font-weight: bold;
+  color: black;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+#classLabel {
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+}
+
+circle {
+  fill: none;
+  stroke: url(#GradientColor);
+  stroke-width: 20px;
+  stroke-dasharray: 472;
+  stroke-dashoffset: 472;
+  animation: anim 2s linear forwards;
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@keyframes anim {
+  100% {
+    stroke-dashoffset: 80;
+  }
+}
+
+/* Bar Graph Horizontal */
+
+.BarChartTitle {
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.bar-graph .year {
+  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+  -moz-animation: fade-in-text 2.2s 0.1s forwards;
+  animation: fade-in-text 2.2s 0.1s forwards;
+  opacity: 0;
+}
+
+.bar-graph-horizontal {
+  max-width: 480px;
+}
+
+.bar-graph-horizontal > div {
+  float: left;
+  margin-bottom: 15px;
+  width: 100%;
+  margin-left: 100px;
+}
+
+.bar-graph-horizontal .year {
+  float: left;
+  margin-top: 10px;
+  width: 50px;
+}
+
+.bar-graph-horizontal .bar {
+  border-radius: 3px;
+  height: 30px;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  width: 0;
+  margin-left: 10px;
+}
+
+.bar-graph-one .bar::after {
+  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+  -moz-animation: fade-in-text 2.2s 0.1s forwards;
+  animation: fade-in-text 2.2s 0.1s forwards;
+  color: #fff;
+  content: attr(data-percentage);
+  font-weight: 300;
+  position: absolute;
+  right: 10px;
+  top: 8px;
+}
+
+.bar-graph-one .bar-one .bar {
+  background-color: #ffc09c;
+  -webkit-animation: show-bar-one 1.2s 0.1s forwards;
+  -moz-animation: show-bar-one 1.2s 0.1s forwards;
+  animation: show-bar-one 1.2s 0.1s forwards;
+}
+
+.bar-graph-one .bar-two .bar {
+  background-color: #fd9477;
+  -webkit-animation: show-bar-two 1.2s 0.2s forwards;
+  -moz-animation: show-bar-two 1.2s 0.2s forwards;
+  animation: show-bar-two 1.2s 0.2s forwards;
+}
+
+.bar-graph-one .bar-three .bar {
+  background-color: #e26e66;
+  -webkit-animation: show-bar-three 1.2s 0.3s forwards;
+  -moz-animation: show-bar-three 1.2s 0.3s forwards;
+  animation: show-bar-three 1.2s 0.3s forwards;
+}
+
+.bar-graph-one .bar-four .bar {
+  background-color: #db7073;
+  -webkit-animation: show-bar-four 1.2s 0.4s forwards;
+  -moz-animation: show-bar-four 1.2s 0.4s forwards;
+  animation: show-bar-four 1.2s 0.4s forwards;
+}
+
+.bar-graph-one .bar-fifth .bar {
+  background-color: #b2565a;
+  -webkit-animation: show-bar-fifth 1.2s 0.4s forwards;
+  -moz-animation: show-bar-fifth 1.2s 0.4s forwards;
+  animation: show-bar-fifth 1.2s 0.4s forwards;
+}
+/* Pop Up */
+
+.popup {
+  width: 400px;
+  background: #95b8d1;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 0 30px 30px;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.popup h2 {
+  font-size: 38px;
+  font-weight: 500;
+  margin: 30px 0 10px;
+}
+
+.popup button {
+  width: 100%;
+  margin-top: 50px;
+  padding: 10px 0;
+  background: #7db8a1;
+  color: #fff;
+  border: 0;
+  outline: none;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.popup p {
+  font-size: 16px;
+  margin: 10px 0 30px;
+}
+
+.popup button:hover {
+  background-color: #568172;
+}
+
+.popup button:active {
+  transform: translateY(1px);
+}
+
+/* Bar Graph Horizontal Animations */
+@-webkit-keyframes show-bar-one {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 10.6%;
+  }
+}
+
+@-webkit-keyframes show-bar-two {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 18%;
+  }
+}
+
+@-webkit-keyframes show-bar-three {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 30.7%;
+  }
+}
+
+@-webkit-keyframes show-bar-four {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 35.8%;
+  }
+}
+@-webkit-keyframes show-bar-fifth {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 60.8%;
+  }
+}
+
+@-webkit-keyframes fade-in-text {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 600px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 1.3fr 1.1fr 1.3fr 1.2fr 0.8fr 0.3fr;
+    grid-template-areas:
+      "sidebar"
+      "main"
+      "BaroMeter"
+      "BarChart"
+      "Intensities"
+      "TakingActions"
+      "nav";
+  }
+
+  .progress-container {
+    width: 40%;
+    height: 15px;
+    background-color: #f1ab00;
+    border-radius: 10px;
+    top: 0px;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background-color: #ff7e00;
+    border-radius: 10px;
+    width: 0;
+    transition: width 0.5s ease-in-out;
+  }
+
+  .UserID {
+    top: 5px;
+    padding: 1px;
+    font-size: 15px;
+    right: 210px;
+  }
+
+  .speech-bubble {
+    display: none;
+  }
+
+  .TextOutput {
+  }
+}
+
+@media (min-width: 768px) {
+  p {
+    font-size: 20px;
+  }
+  .next-button {
+    font-size: 10px;
+  }
+
+  .UserID {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  p {
+    font-size: 24px;
+  }
+
+  .UserID {
+    font-size: 15px;
+  }
+
+  .next-button {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 1189px) and (max-height: 820px) {
+  /* CSS styles for screens up to 1189x820 */
+  .TextOutput {
+    text-align: center;
+    margin-top: 10px;
+    max-width: calc(100% - 400px);
+    width: 450px;
+    height: 250px;
+    bottom: 50px;
+  }
+
+  .TextOutput p {
+    font-size: 14px;
+    color: black;
+    position: relative;
+    align-self: center;
+    margin-top: 20px;
+    margin-left: 10px;
+  }
+
+  .rating2 {
+    right: calc(
+      2% + 10px
+    ); /* set the right position relative to the right border of the main area */
+    position: absolute;
+    top: 215px; /* set the top position */
+  }
+
+  .question2 {
+    height: 20px;
+    width: 20px;
+    right: calc(
+      2% + 10px
+    ); /* set the right position relative to the right border of the main area */
+    position: absolute;
+    top: 15px; /* set the top position */
+    padding: 5px;
+    right: 10px;
+  }
+
+  .progressChart {
+    width: 160px;
+    height: 160px;
+    position: center;
+    left: 50px;
+  }
+
+  .container {
+    height: 150vh;
+  }
+}

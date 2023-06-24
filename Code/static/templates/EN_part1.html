@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Case Study Hatespeech</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/EN_part1.css') }}">
+    <script src="{{ url_for('static', filename='thumbsupdown.js') }}"></script>
+    <!--    Javascript shap loading package-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <script src="static/raiting.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shapla/react-force-graph@0.3.3/dist/index.min.css" />
+</head>
+
+<!-- Container Layout beginnt hier -->
+<div class="container">
+    <!-- Hier ist der Text bereich -->
+    <main> <div class ="iframewindow"> <iframe src="{{ child_url }}" width="100%" height="230px"></iframe></div>
+
+            <!-- Thumbs up Thumbs down -->
+             <div class="rating">
+                <div class="like grow">
+                    <i class="fa fa-thumbs-up fa-1x like" aria-hidden="true"></i>
+                    </div>
+                <div class="dislike grow">
+                    <i class="fa fa-thumbs-down fa-1x like" aria-hidden="true"></i>
+                </div>
+                </div>
+            <!-- Thumbs up Thumbs down -->
+
+        <img class="question1" src="{{ url_for('static', filename='images/question-mark-circle-outline-icon.png') }}"><div class="info-text1">
+            The visualization illustrates the most significant words that indicate whether or not a text sample contains hate speech. The longer the bar, the more important the word. The blue bars indicate that the word decreases the probability of hate speech, while the red bars indicate that the word increases the probability of hate speech.
+        </div></main>
+        <!-- Hier kommt der Barometer -->
+    <div id="BaroMeter"><h2 class ="BaroMeter-text">Confidence Barometer</h2>
+                            <!-- Thumbs up Thumbs down -->
+                            <div class="rating2">
+                                <div class="like grow">
+                                    <i class="fa fa-thumbs-up fa-1x like" aria-hidden="true"></i>
+                                </div>
+                                <div class="dislike grow">
+                                    <i class="fa fa-thumbs-down fa-1x like" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <!-- Thumbs up Thumbs down -->
+        <img class="question2" src="{{ url_for('static', filename='images/question-mark-circle-outline-icon.png') }}"><div class="info-text2">
+            The level of confidence the model has that the text contains hate speech or not.
+        </div>
+            <!-- Hier kommt der Barometer -->
+            <div class = "progressChart">
+                <div class = "outer">
+                    <div class = "inner">
+                        <div id="number">
+                        </div>
+                        <div id="classLabel"> Hate
+                        </div>
+                    </div>
+                </div>
+                <!-- SVG Code -->
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="170px" height="170px">
+                    <defs>
+                       <linearGradient id="GradientColor">
+                          <stop offset="0%" stop-color="#79d152" />
+                          <stop offset="100%" stop-color="#2b8d8a" />
+                       </linearGradient>
+                    </defs>
+                    <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+            </svg>
+    <script>
+        let number = document.getElementById('number');
+        let counter = 0; 
+        setInterval(() => {
+            if(counter == 64){
+                clearInterval();
+            }else{
+                counter += 1;
+                number.innerHTML = counter + '%';
+            }
+        }, 10);
+    </script>
+    </div>
+    </div>
+    <div id="TakingActions">
+        <img class="question3" src="{{ url_for('static', filename='images/question-mark-circle-outline-icon.png') }}"><div class="info-text3">
+            Here, you can decide whether or not you agree with the prediction made by the model. You can also rate the intensity of hate speech and compare it to your own opinion.
+            Please select what should happen to the user who posted the comment in your opinion.
+        </div>
+        <form action="/satisfaction" method="post">
+
+            <div class="EvalSolutions">
+            <h2 class ="Eval">Do you agree with the results of the model? Please give your opinion on which label you think is the most appropriate.</h2>
+            <label for="class">Select Class:</label>
+            <select id="class" class="evalcenter" name="class" required>
+              <option value="">-- Select a Class --</option>
+              <option value="hate">Hate</option>
+              <option value="nohate">No Hate</option>
+            </select>
+    
+            <label for="intensity">Select Intensity:</label>
+            <select id="intensity" class="evalcenter" name="intensity" required>
+              <option value="">-- Select Intensity --</option>
+              <option value="intimidates">Intimidates</option>
+              <option value="offends">Offends or Discriminates</option>
+              <option value="violence">Promotes violence</option>
+            </select>
+
+            <div class = "evaluateAction" >
+            <h2 class ="actions">Taking Actions</h2>
+            <label for="delete-post"><input type="radio" id="delete-post" name="action" value="delete-post" required> Delete post</label>
+            <label for="temporarily-ban"><input type="radio" id="temporarily-ban" name="action" value="temporarily-ban" required> Temporarily ban</label>
+            <label for="permanently-ban"><input type="radio" id="permanently-ban" name="action" value="permanently-ban" required> Permanently ban</label>
+            <label for="legal-actions"><input type="radio" id="legal-actions" name="action" value="legal-actions" required> Legal actions</label>
+            </div>
+            <input type="submit" value="Next">
+
+        </form>
+        <script>
+            document.getElementById("class").addEventListener("change", function() {
+                var evaluateActionDiv = document.getElementsByClassName("evaluateAction")[0];
+                var actionRadios = document.getElementsByName("action");
+                if (this.value == "hate") {
+                  evaluateActionDiv.style.display = "block";
+                  for (var i = 0; i < actionRadios.length; i++) {
+                    actionRadios[i].required = true;
+                  }
+                } else {
+                  evaluateActionDiv.style.display = "none";
+                  for (var i = 0; i < actionRadios.length; i++) {
+                    actionRadios[i].required = false;
+                  }
+                }
+              });
+            </script>
+    </div> 
+    <script>
+        const classSelect = document.getElementById('class');
+        const intensitySelect = document.getElementById('intensity');
+        
+        classSelect.addEventListener('change', function() {
+          if (this.value === 'hate') {
+            intensitySelect.disabled = false;
+          } else {
+            intensitySelect.disabled = true;
+          }
+        });
+      </script>
+    </div>
+     <!-- Hier wird ausgewertet evaluiert -->
+    <div id="BarChart">
+        <img class="question5" src="{{ url_for('static', filename='images/question-mark-circle-outline-icon.png') }}"><div class="info-text5">
+            The bar chart shows which term most influenced the models classification of the text as hate speech.
+        </div>
+        <h2 class ="BarChartTitle">These words were particularly important for detection</h2>
+        <!-- Bar Chart -->
+        <section class="bar-graph bar-graph-horizontal bar-graph-one">
+            <div class="bar-four">
+              <span class="year">worse</span>
+              <div class="bar" ></div>
+            </div>
+            <div class="bar-fifth">
+                <span class="year">Parasites</span>
+                <div class="bar" ></div>
+              </div>
+          </section>
+        <!-- Bar Chart --> 
+    </div>
+    <div id="Intensities">
+        <p style="margin-left: 170px; font-size: 20px;">Predicted intensity Level & comparable texts for the predicted degree of intensity</p>
+        <div class="button-group">
+            <button class="nohate-button">
+                No Hate
+              </button>
+            <button class="intimidation-button">
+              Intimidation
+            </button>
+            <button class="offense-button">
+                Offends or Discriminates
+            </button>
+            <button class="violence-button">
+                Promotes violence
+            </button>
+        </div> 
+        <!-- Text output field -->
+    <div class="TextOutput" id = "text">
+        <p> {{ text }} </p>
+        <button class="reset-button2">
+            <img class="reload2" src="{{ url_for('static', filename='images/update-icon.png') }}">Reset</button>
+    </div>
+
+        <img class="question3" src="{{ url_for('static', filename='images/question-mark-circle-outline-icon.png') }}">
+        <div class="info-text3">
+            This section indicates the intensity level that the model predicted. In addition, you can discover alternative texts with the specified intensity that are comparable to the source text. The predicted intensity is outlined in orange.
+        </div>
+
+            <!-- Thumbs up Thumbs down -->
+            <div class="rating3">
+                <div class="like grow">
+                    <i class="fa fa-thumbs-up fa-1x like" aria-hidden="true"></i>
+                </div>
+                <div class="dislike grow">
+                    <i class="fa fa-thumbs-down fa-1x like" aria-hidden="true"></i>
+                </div>
+            </div>
+            <!-- Thumbs up Thumbs down -->
+            <script>
+                $(document).ready(function() {
+                    $(".reset-button2").click(function() {
+                        $.ajax({
+                            url: "/get_text_EN1",
+                            type: "GET",
+                            success: function(response) {
+                                $("#text p").text(response.text);
+                            }
+                        });
+                    });
+                });
+            </script>
+    </div>
+    <div id="sidebar">
+        <h1 class = "UserID" >User: {{username}}</h1>
+        <img class="speech-bubble" src="{{ url_for('static', filename='images/speaking-bubbles-b-w-icon.png') }}">
+        <div class="progress-container">
+        <div class="progress-bar" style="width: {{ progress|safe }}%;"></div>
+        </div>
+    </div>
+    <div  class = "PopUpWindow">
+        <div class = "popup" id="popup">
+            <img class="noHateImg" src="{{ url_for('static', filename='images/popup_img.png') }}">
+            <h2>Welcome to the User Case Study!</h2>
+            <p>You will receive five texts to review using the dashboard. The texts are classified as either hateful or non-hateful, and if categorized as hateful, the model also provides three levels of intensity. The dashboard assists in comprehending the reasoning behind the machine learning model's prediction. At the end, you can express your opinion on whether or not the text contains hatred, the intensity of that hatred, and what should happen to the author.</p>
+            <p style="font-weight:bold;">Please evaluate the explanations with a thumb up or a thumb down. Let us know if this explanation was helpful or not. It only has to be rated once. Ideally, just before the final text that needs annotation</p>
+            <p>If you don't understand something, you can click on the question mark in each section to see what it means.</p>
+            <p>proceed to the next text, press "next." Have fun!</p>
+            <button type="button" onclick="closePopup()">OK</button>
+        </div>
+    <script>
+        let popup = document.getElementById("popup");
+
+        function closePopup() {
+            popup.style.display = "none";
+        }
+    </script>
+    </div>
+    <nav>
+    </nav>
+</div>
+<script src='https://use.fontawesome.com/7ad89d9866.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script  src="./script.js"></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script>
+$('.like, .dislike').on('click', function() {
+    event.preventDefault();
+    $('.active').removeClass('active');
+    $(this).addClass('active');
+});
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(function() {
+        $('.rating .like').click(function() {
+            $.post('/glee/TextShapExplain/up', data={'rating': 'helpful'});
+        });
+        $('.rating .dislike').click(function() {
+            $.post('/glee/TextShapExplain/down', data={'rating': 'not helpful'});
+        });
+        $('.rating2 .like').click(function() {
+            $.post('/glee/ConfidenceBarometer/up', data={'rating': 'helpful'});
+        });
+        $('.rating2 .dislike').click(function() {
+            $.post('/glee/ConfidenceBarometer/down', data={'rating': 'not helpful'});
+        });
+        $('.rating3 .like').click(function() {
+            $.post('/glee/SimilarityIntensitive/up', data={'rating': 'helpful'});
+        });
+        $('.rating3 .dislike').click(function() {
+            $.post('/glee/SimilarityIntensitive/down', data={'rating': 'not helpful'});
+        });
+    });
+</script>
+</html>

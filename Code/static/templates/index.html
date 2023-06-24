@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Case Study Hatespeech</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    <div class ="design"> 
+      <div class="welcome">Welcome</div>
+      <div class="motivation">Start your Journey now!</div>
+      <div class="reason">Help improve the classification of hate speech on social media in order to prevent future hate messages.</div>
+    </div>
+    <form method="POST" action = "{{ url_for('login')}}">
+    <div class="login">
+      <h3 class="title"> User Login</h3>
+      <div class="text-input">
+        <i class="ri-user-line"></i>
+        <input type="name" name="name" id = "name" placeholder="Username" required>
+      </div>
+      <div class="text-input">
+        <i class="ri-lock-fill"></i>
+        <input type="password" name = "password" id = "password" placeholder="Token" required>
+      </div>
+      {% if error %}
+        <div class="error">{{ error }}</div>
+      {% endif %}
+      <button type"submit" name = "submit" class = "login-btn"> LOGIN </button>
+    </form>
+      <div class ="contact">
+        <a href="mailto:raisa.geleta@gmail.com">Invalid Token? Contact Us</a>
+          <i class="ri-question-line"></i>
+    </div>
+  </div>
+</div>
+  <img class="hate" src="{{ url_for('static', filename='images/Teil1.png') }}">
+  <img class="hate2" src="{{ url_for('static', filename='images/Teil2.png') }}">
+</body>
+</html>
+

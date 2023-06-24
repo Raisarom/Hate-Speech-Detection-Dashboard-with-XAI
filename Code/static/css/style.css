@@ -1,0 +1,269 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+*,
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: linear-gradient(to bottom right,#2C5364, #9ab28d, #b5cda8);  */
+  background: #1f4037;
+  background: -webkit-linear-gradient(to left, #8daa91, #1f4037);
+  background: linear-gradient(to left, #8daa91, #1f4037);
+
+  /* background-color: #8da580; */
+}
+
+.welcome {
+  font-weight: medium;
+  font-size: 50px;
+  margin-top: 70px;
+  margin-left: 110px;
+  padding: 1px;
+  text-align: center;
+}
+
+.motivation {
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 20px;
+  margin-left: 110px;
+  padding: 1px;
+  text-align: center;
+}
+
+.reason {
+  font-weight: regular;
+  font-size: 15px;
+  margin-top: 20px;
+  margin-left: 115px;
+  padding: 1px;
+  text-align: center;
+}
+
+.info {
+  font-weight: light;
+  font-size: 10px;
+  margin-top: 20px;
+  margin-left: 115px;
+  padding: 1px;
+  text-align: center;
+}
+.container {
+  width: 50vw;
+  height: 60vh;
+  display: grid;
+  /* background: lightblue; hier wird das design gezeigt */
+  grid-template-columns: 100%;
+  grid-template-areas: "login";
+  box-shadow: 0 0 17px 10px rgb(0 0 0 / 30%);
+  border-radius: 20px;
+  background: #f7f7f1;
+}
+
+.design {
+  grid-area: design;
+  /* background: lightcoral; hier wird das design gezeigt */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.info {
+  font-weight: light;
+  font-size: 13px;
+}
+
+.barcode {
+  z-index: 1;
+}
+/* .design img {
+  bottom: -300px;
+  left: 463px;
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  object-fit: none;
+  z-index: -1;
+
+} */
+
+.hate {
+  bottom: -390px;
+  left: -320px;
+  position: absolute;
+  width: 180%;
+  height: 180%;
+  object-fit: none;
+  z-index: -2;
+}
+
+.hate2 {
+  bottom: -250px;
+  right: -150px;
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  object-fit: none;
+  z-index: -2;
+}
+
+.barcode {
+  bottom: 20px;
+  left: 210px;
+  position: absolute;
+  width: 25%;
+  height: 25%;
+  display: inline-block;
+  z-index: 1;
+  padding: 5px;
+}
+
+.login {
+  grid-area: login;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 100px;
+
+  /* background-color: lightgoldenrodyellow; hier wird der login gezeigt */
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.login h3.title {
+  margin: 20px 0;
+}
+.text-input {
+  background: #e6e6e6;
+  height: 50px;
+  display: flex;
+  width: 60%;
+  align-items: center;
+  border-radius: 20px;
+  padding: 0 15px;
+  margin: 15px 0;
+}
+
+.text-input input {
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  margin-left: 10px;
+}
+
+.text-input i {
+  color: #686868;
+}
+::placeholder {
+  color: #9a9a9a;
+}
+
+.login-btn {
+  width: 45%;
+  height: 7%;
+  padding: 10px;
+  color: white;
+  background: linear-gradient(to right, #cdc4fb, #b1a8de);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  -webkit-transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+}
+
+.login-btn:hover,
+login-btn:focus,
+login-btn:active {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+/* Hier wird es responsive */
+
+a {
+  font-size: 12px;
+  color: #9a9a9a;
+  cursor: pointer;
+  user-select: none;
+}
+.contact i {
+  color: #9a9a9a;
+  margin-left: 5px;
+}
+.contact {
+  display: flex;
+  align-items: stretch;
+  position: absolute;
+  bottom: -40px;
+  text-align: center;
+  left: 28%;
+  padding: 10px;
+}
+@media (min-width: 900px) {
+  .container {
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "design login";
+  }
+
+  .design {
+    display: block;
+  }
+}
+
+/* Responsive Design for I phone */
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .hate {
+    display: none;
+  }
+
+  .hate2 {
+    display: none;
+  }
+
+  .contact {
+    display: flex;
+    align-items: stretch;
+    position: absolute;
+    margin-bottom: -60px;
+    left: 55%;
+    transform: translateX(-50%);
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .hate {
+    display: none;
+  }
+
+  .hate2 {
+    display: none;
+  }
+}
+
+@media only screen and (max-height: 800px) {
+  /* place here CSS for when the screen is less than 500px tall */
+  .barcode {
+    display: none;
+  }
+  .design {
+    display: none;
+  }
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Case Study Hatespeech</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/test.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="Introduction">
+        <h1>
+          Hello, and thank you for your interest in our hate-text-analysis app‼️
+        </h1>
+        <p>
+          Our app will provide you a snippet of text and ask you to determine if
+          it constitutes hate speech. If it does contain hate speech, the degree
+          to which it is hateful will be made clear. Please let us know if you
+          agree with the classification of the text as hate speech after
+          reading it. By choosing "yes" or "no" and assigning your own labels to
+          the text, together with the strength of those labels, you may easily
+          share your thoughts with us. Thank you for taking the time to provide
+          us with annotations, which will allow us to refine our system and learn
+          more about how people respond to hate speech. Okay, so let's begin! 🥳
+        </p>
+      </div>
+      <div id="text">
+        <p class = "inputText" id="text-field">{{ text }}</p>
+      </div>
+      <div id="Annotations">
+        <div class="annotations">
+          <img class="question1" src="{{ url_for('static', filename='images/question-mark-circle-outline-icon.png') }}"><div class="info-text1">
+            This section provides the labels for the text seen above. Please let us know what you think, whether you agree or disagree.
+
+        </div>
+          <div class="circle1">{{ label }}</div>
+          <div class="circle2">{{ intens }}</div>
+        </div>
+        <div class="selection">
+          <form>
+            <label for="hate">I agree with this</label>
+            <input type="checkbox" id="agree" name="agree-disagree" value="agree" />
+            <label for="no-hate">I do not agree with this</label>
+            <input type="checkbox" id="no-agree" name="agree-disagree" value="disagree" />
+          </form>
+          <form action="/Love" method="post">
+            <input type="hidden" name="counter" value="{{ counter }}">
+            <button type"submit" name = "submit" value="Continue" class = "continue-btn"> continue </button>
+          </form>
+        </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var agreeCheckbox = document.querySelector('#agree');
+            var noAgreeCheckbox = document.querySelector('#no-agree');
+            var submitButton = document.querySelector('.continue-btn');
+            submitButton.style.display = 'none';
+          
+            agreeCheckbox.addEventListener('change', function() {
+              if (agreeCheckbox.checked) {
+                submitButton.style.display = 'block';
+              } else {
+                submitButton.style.display = 'none';
+              }
+            });
+          
+            noAgreeCheckbox.addEventListener('change', function() {
+              if (noAgreeCheckbox.checked) {
+                submitButton.style.display = 'none';
+              }
+            });
+          });
+        </script>
+      </div>
+      <div id="Evaluation">
+        <form action="/Love" method="post">
+          <div class="radio-container">
+            <p  id="text-field">What are your thoughts regarding these annotations? Please indicate your opinion by selecting the labels you believe to be correct. </p>
+            <input type="radio" id="no-hate" name="hate" value="no" class ="checkbox" onclick="hideIntensity()" required>
+            <label for="no-hate">No Hate</label>
+          </div>
+          <div class="radio-container">
+            <input type="radio" id="hate" name="hate" value="yes" class ="checkbox" onclick="showIntensity()">
+            <label for="hate">Hate</label>
+          </div>
+          <div class="dropdown-container">
+          <div id="intensity-container" style="display:none;" class = "intensity_container">
+            <label for="intensity">What Intensity:</label>
+            <select id="intensity" name="intensity" class = "intensity_drop">
+              <option value="">Select an intensity</option>
+              <option value="1">Intimidation</option>
+              <option value="2">Offense</option>
+              <option value="3">Promotion of violence</option>
+            </select>
+          </div>
+          </div>
+          <input type="hidden" name="counter" value="{{ counter }}" class = "continue-btn">
+          <button type"submit" name = "submit" value="Continue" class = "continue-btn"> continue </button>
+        </form>
+
+      </div>
+    </div>
+  </body>
+
+  <script>
+    // Get the checkboxes and evaluation section
+    const hateCheckbox = document.getElementById("agree");
+    const noHateCheckbox = document.getElementById("no-agree");
+    const evaluationSection = document.getElementById("Evaluation");
+
+    // Add event listeners to the checkboxes
+    hateCheckbox.addEventListener("change", toggleHateCheckbox);
+    noHateCheckbox.addEventListener("change", toggleNoHateCheckbox);
+
+    // Functions to handle checkbox clicks
+    function toggleHateCheckbox() {
+      if (hateCheckbox.checked) {
+        noHateCheckbox.checked = false;
+        evaluationSection.style.display = "none";
+      }
+    }
+
+    function toggleNoHateCheckbox() {
+      if (noHateCheckbox.checked) {
+        hateCheckbox.checked = false;
+        evaluationSection.style.display = "grid";
+      } else {
+        evaluationSection.style.display = "none";
+      }
+    }
+
+    // Clear the other checkbox when a checkbox is clicked
+    function clearOtherCheckbox() {
+      if (this === hateCheckbox) {
+        noHateCheckbox.checked = false;
+      } else if (this === noHateCheckbox) {
+        hateCheckbox.checked = false;
+      }
+    }
+
+    hateCheckbox.addEventListener("click", clearOtherCheckbox);
+    noHateCheckbox.addEventListener("click", clearOtherCheckbox);
+  </script>
+  <script>
+    function showIntensity() {
+      document.getElementById("intensity-container").style.display = "block";
+      document.getElementById("intensity").required = true;
+    }
+    
+    function hideIntensity() {
+      document.getElementById("intensity-container").style.display = "none";
+      document.getElementById("intensity").required = false;
+    }
+  </script>
+</html>

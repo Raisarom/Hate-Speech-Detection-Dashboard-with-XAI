@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+/* Main Dashboard components Grid Layout*/
+
+.container{
+    display: grid;
+    height: 100vh;
+    background: #d9d9d9 ;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 10px 10px;
+    position: relative;
+    grid-template-areas: 
+    "main main"
+    "BarChart1 BarChart2 "
+    "Demographic Demographic"
+}
+
+main{
+    background: #ffffff;
+    grid-area: main;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    position: relative;
+}
+
+#BarChart1{
+    background: #f1f1f1;
+    grid-area: BarChart1;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    position: relative;
+}
+
+#BarChart2{
+    background: #f1f1f1;
+    grid-area: BarChart2;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    position: relative;
+}
+
+#Demographic{
+    background: #f1f1f1;
+    grid-area: Demographic;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    position: relative;
+}
+
+:root{
+    --main-radius: 5px;
+    --main-padding: 5px;
+}
+
+/* Table Styling */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #ddd;
+}
