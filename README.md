@@ -12,6 +12,10 @@
 
 Hate speech is getting worse, which is a big problem on social media. This study looks at how machine learning (ML) can help reduce the bad effects of the internet by making it easier to moderate material. Hate speech is put into four categories: *no hate*, *textit:intimidation*, *offense or discrimination*, and *promotes violence*. This is done to give a more accurate range of intensity and get around the problems with looking at hate speech as a binary task, which is how sentiment analysis usually works. First, 31 people marked up a dataset in both English and German. The ML system has been put into a dashboard with explainable artificial intelligence (XAI) tools to make it easier to understand and be more open. A case study with 40 non-expert moderators is used to figure out how well the suggested XAI dashboard helps with content moderation. According to the results, it's important for content managers to know how bad hate speech is because it can affect how bad punishments might be. In a similar way, XAI seems like it could be a way to make ML more trustworthy, which would help judges make better decisions.
 
+Here you can see the dashboard:
+
+![Dashboard](Dashboard_main.jpg)
+
 ## Features
 - User-friendly web interface for efficient moderation.
 - Real-time storage of results using Firebase.
