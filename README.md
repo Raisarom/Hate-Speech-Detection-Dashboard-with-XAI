@@ -16,6 +16,11 @@ Here you can see the dashboard:
 
 ![Dashboard](Dashboard_main.jpg)
 
+(A) Text Heatmapping
+(B) Confidence Barometer
+(C) Text Similarity 
+(D) Evaluation 
+
 ## Features
 - User-friendly web interface for efficient moderation.
 - Real-time storage of results using Firebase.
